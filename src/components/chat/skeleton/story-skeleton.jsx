@@ -1,29 +1,26 @@
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import user1 from "./../../../assets/user1.svg"
-import user2 from "./../../../assets/user2.svg"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
-const Stories = () => {
-  const stories = [user1, user2]
+const StoriesSkeleton = () => {
   return (
     <div className="text-start p-6 border-t border-gray-700">
       <div>
-        <p className="text-xl font-medium">Stories</p>
+        <p className="text-xl font-medium">
+          <Skeleton width={100} />
+        </p>
         <div className="mt-4 flex space-x-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white cursor-pointer">
             <FontAwesomeIcon className="text-[#26272D]" icon={faPlus} />
           </div>
-          {stories.map((story) => (
-            <img
-              key={story}
-              className="w-12 h-12 rounded-full cursor-pointer"
-              src={story}
-              alt="tools avatar"
-            />
+          {[...Array(4)].map((_, index) => (
+            <Skeleton key={index} circle={true} height={48} width={48} className="cursor-pointer" />
           ))}
         </div>
       </div>
     </div>
   )
 }
-export default Stories
+
+export default StoriesSkeleton
