@@ -11,7 +11,7 @@ const Sidebar = () => {
       <Tools />
       <Search search={searchInput} setSearch={setSearchInput} />
       <StoriesContainer />
-      <Messages />
+      <Messages searchInput={searchInput} />
     </div>
   )
 }
