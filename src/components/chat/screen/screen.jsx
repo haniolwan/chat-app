@@ -1,11 +1,15 @@
-import Conversation from "./conversation/conversation";
+import Conversation from "./conversation/conversation"
 
-const Screen = ({messages}) => {
-    
-    return (
-        <div className="row-span-8 bg-[#141416]">
-            <Conversation date={"Yesterday"} messages={messages} />
-        </div>
-    )
+const Screen = ({ messages, searchInput, isLoading }) => {
+  return (
+    <div className="row-span-8 bg-[#141416]">
+      <Conversation
+        isLoading={isLoading}
+        date={"Yesterday"}
+        messages={messages}
+        searchInput={searchInput}
+      />
+    </div>
+  )
 }
-export default Screen;
+export default Screen

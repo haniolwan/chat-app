@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import Stories from "./stories"
 import StoriesSkeleton from "../../chat/skeleton/story-skeleton"
 
-const StoriesContainer = () => {
+const StoriesContainer = ({ searchInput }) => {
   const [showStories, setShowStories] = useState(false)
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const StoriesContainer = () => {
   return (
     <div>
       {!showStories && <StoriesSkeleton />}
-      {showStories && <Stories />}
+      {showStories && <Stories searchInput={searchInput} />}
     </div>
   )
 }

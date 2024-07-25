@@ -10,7 +10,7 @@ const Sidebar = () => {
     <div className="col-span-4 min-w-[320px] bg-[#1C1D22] border-r border-gray-700">
       <Tools />
       <Search search={searchInput} setSearch={setSearchInput} />
-      <StoriesContainer />
+      <StoriesContainer searchInput={searchInput} />
       <Messages searchInput={searchInput} />
     </div>
   )
