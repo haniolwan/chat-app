@@ -43,7 +43,7 @@ const Chat = ({ isOpen, setOpenDrawer }) => {
         ${!isOpen && "col-span-12"}`}>
       <Tools setOpenDrawer={setOpenDrawer} search={search} setSearch={setSearch} />
       <Screen messages={initialMessages} searchInput={search} isLoading={isLoading} />
-      <Keyboard setMessages={setMessages} />
+      <Keyboard setMessages={setInitialMessags} />
     </div>
   )
 }
