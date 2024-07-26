@@ -11,9 +11,9 @@ const User = ({ name, message, received, previous }) => {
   )
 
   return (
-    <div className="flex py-2 px-6 hover:bg-gray-900">
+    <div className="flex py-2 px-4 hover:bg-gray-900">
       <img src={user} alt="user message" />
-      <div className="grid w-full ml-2">
+      <div className="ml-2">
         <div className="flex justify-between items-center">
           <p className="text-bold">{name}</p>
           <div className="flex flex-col justify-between items-center">

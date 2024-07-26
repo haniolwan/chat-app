@@ -13,7 +13,9 @@ const Tools = ({ setOpenDrawer, search, setSearch }) => {
     }
   }, [clicked])
   return (
-    <div className="row-span-1 flex justify-between items-center px-6 bg-[#1C1D22]">
+    <div
+      id="user-conversation"
+      className="row-span-1 flex justify-between items-center px-6 bg-[#1C1D22]">
       <div className="flex items-center space-x-2.5">
         <img className="w-10 h-10 rounded-full" src={user1} alt="chat user" />
         <span>Lara Mueller</span>

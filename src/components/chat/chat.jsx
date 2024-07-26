@@ -5,41 +5,44 @@ import Tools from "./tools/tools"
 
 const Chat = ({ isOpen, setOpenDrawer }) => {
   const [search, setSearch] = useState("")
-  const [messages, setMessages] = useState([])
+  const [initialMessages, setInitialMessags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
+  const setMessages = () =>
+    setInitialMessags([
+      {
+        sender: "Sidrah",
+        text: "Lorem ipsum dolor sit amet consectetur,",
+        time: "17:55",
+      },
+      {
+        sender: "me",
+        text: "Lorem ipsum dolor sit amet consectetur,",
+        time: "17:55",
+      },
+      {
+        sender: "Sidrah",
+        text: "Lorem ipsum dolor sit amet consectetur,",
+      },
+      {
+        sender: "Sidrah",
+        text: "Lorem ipsum dolor sit amet consectetur,",
+        time: "17:55",
+      },
+    ])
 
   useEffect(() => {
     setTimeout(() => {
-      setMessages([
-        {
-          sender: "Sidrah",
-          text: "Lorem ipsum dolor sit amet consectetur,",
-          time: "17:55",
-        },
-        {
-          sender: "me",
-          text: "Lorem ipsum dolor sit amet consectetur,",
-          time: "17:55",
-        },
-        {
-          sender: "Sidrah",
-          text: "Lorem ipsum dolor sit amet consectetur,",
-        },
-        {
-          sender: "Sidrah",
-          text: "Lorem ipsum dolor sit amet consectetur,",
-          time: "17:55",
-        },
-      ])
+      setMessages()
       setIsLoading(false)
     }, 1500)
   }, [])
   return (
     <div
-      className={`grid grid-rows-10 col-span-9
+      className={`grid col-span-12 md:col-span-9
         ${!isOpen && "col-span-12"}`}>
       <Tools setOpenDrawer={setOpenDrawer} search={search} setSearch={setSearch} />
-      <Screen messages={messages} searchInput={search} isLoading={isLoading} />
+      <Screen messages={initialMessages} searchInput={search} isLoading={isLoading} />
       <Keyboard setMessages={setMessages} />
     </div>
   )

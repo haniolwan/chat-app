@@ -6,7 +6,7 @@ import Sidebar from "./components/sidebar/sidebar"
 function App() {
   const [isOpenDrawer, setOpenDrawer] = useState(false)
   return (
-    <div className="grid grid-cols-13 h-full">
+    <div className="grid grid-cols-12 h-full">
       <Sidebar />
       <Chat setOpenDrawer={setOpenDrawer} isOpen={isOpenDrawer} />
       <Contact isOpen={isOpenDrawer} setIsOpen={setOpenDrawer} />

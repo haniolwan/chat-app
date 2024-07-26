@@ -8,7 +8,8 @@ const StoriesSkeleton = () => {
     <div className="text-start p-6 border-t border-gray-700">
       <div>
         <p className="text-xl font-medium">
-          <Skeleton width={100} />
+          {/* <Skeleton width={70} /> */}
+          Stories
         </p>
         <div className="mt-4 flex space-x-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white cursor-pointer">
