@@ -3,15 +3,14 @@ import Pusher from 'pusher-js';
 
 window.Pusher = Pusher;
 
-const echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'iilwfway5ger12vwqf5g',
-    wsHost: 'localhost:8000', // Adjust this if your WebSocket server is on a different host
-    wsPort: 8080, // Default port for Laravel WebSockets
-    wssPort: 8080, // Default port for secure connections
-    forceTLS: false, // Set to true if you're using HTTPS
-    enabledTransports: ['ws', 'wss'], // Use both ws and wss
-    cluster: 'mt1', // Add your Pusher cluster here
+window.Echo = new Echo({
+    broadcaster: 'reverb',
+    key: import.meta.env.VITE_REVERB_APP_KEY,
+    wsHost: import.meta.env.VITE_REVERB_HOST,
+    wsPort: import.meta.env.VITE_REVERB_PORT,
+    // wssPort: import.meta.env.VITE_REVERB_PORT,
+    forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
+    // enabledTransports: ['ws', 'wss'],
 });
 
-export default echo;
+export default window.Echo;

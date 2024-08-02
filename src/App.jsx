@@ -1,18 +1,9 @@
 import { useEffect, useRef, useState } from "react"
-import Chat from "./components/chat/chat"
-import Contact from "./components/contact/contact"
-import Sidebar from "./components/sidebar/sidebar"
 import axios from 'axios';
-import echo from "./echo";
+import Echo from './echo'
 
 function App() {
-  const userData = {
-    id: 1
-  };
-
-  const user = (userData);
-  // `App.Models.User.${user.id}`;
-  const webSocketChannel = `private-channel_for_everyone`;
+  const webSocketChannel = `channel`;
 
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
@@ -22,20 +13,20 @@ function App() {
   };
 
   const connectWebSocket = () => {
-
-    const channel = echo.private(webSocketChannel);
-    channel.listen('GotMessage', async (e) => {
-        console.log('Event received:', e);
-        await getMessages();
-    });
-
+    const channel = Echo.channel(webSocketChannel)
+    channel.listen('GotMessage', async (event) => {
+      await getMessages();
+    })
   }
+
+  const url = 'http://localhost/api';
+  const token = '5|cPIwuK0E6mo9bBI8rLVf72ntfckNB6FAyKGZ6XFK326f2197'
 
   const getMessages = async () => {
     try {
-      const m = await axios.get(`${"http://localhost:8000/api"}/messages`, {
+      const m = await axios.get(`${url}/messages`, {
         headers: {
-          'Authorization': 'Bearer ' + "1|2fpu6QUasZVJszWW9MuVvfTIFFNM9B5reQEWcU0H492e76b4"
+          'Authorization': 'Bearer ' + token
         }
       });
       setMessages(m.data);
@@ -50,7 +41,7 @@ function App() {
     connectWebSocket();
 
     return () => {
-      echo.leave(webSocketChannel);
+      Echo.leave(webSocketChannel);
     }
   }, []);
 
@@ -58,12 +49,12 @@ function App() {
 
   const messageRequest = async (text) => {
     try {
-      await axios.post(`${"http://localhost:8000/api"}/message`,
+      await axios.post(`${url}/message`,
         {
           text,
         }, {
         headers: {
-          'Authorization': 'Bearer ' + "1|2fpu6QUasZVJszWW9MuVvfTIFFNM9B5reQEWcU0H492e76b4"
+          'Authorization': 'Bearer ' + token
         },
 
       });
@@ -82,6 +73,7 @@ function App() {
     messageRequest(message);
     setMessage("");
   };
+  const user = { id: 1 }
   return (
     <div className="row justify-content-center">
       <div className="col-md-8">
@@ -90,8 +82,8 @@ function App() {
           <div className="card-body"
             style={{ height: "500px", overflowY: "auto" }}>
             {
-              messages?.map((message) => (
-                <div className={`row ${user.id === message.user_id ? "justify-content-end" : ""
+              messages?.map((message, idx) => (
+                <div key={idx} className={`row ${user.id === message.user_id ? "justify-content-end" : ""
                   }`}>
                   <div className="col-md-6">
                     <small className="text-muted">
