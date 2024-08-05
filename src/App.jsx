@@ -1,16 +1,52 @@
-import { useState } from "react"
-import Chat from "./components/chat/chat"
-import Contact from "./components/contact/contact"
-import Sidebar from "./components/sidebar/sidebar"
+import { Route, Routes } from "react-router-dom"
+import { authProtectedRoutes, publicRoutes, unAuthProtectedRoutes } from "./routes/allRoutes"
+import NonAuthLayout from "./layouts/nonAuthLayout"
+import { AuthProtectedLayout } from "./layouts/authProtectedLayout"
 
 function App() {
-  const [isOpenDrawer, setOpenDrawer] = useState(false)
   return (
-    <div className="grid grid-cols-12 h-full">
-      <Sidebar />
-      <Chat setOpenDrawer={setOpenDrawer} isOpen={isOpenDrawer} />
-      <Contact isOpen={isOpenDrawer} setIsOpen={setOpenDrawer} />
-    </div>
+    // <LoadingLayout
+    //   isLoading={false}
+    //   boxStyle=" w-full h-screen flex-center"
+    // >
+    <Routes>
+      <Route>
+        {unAuthProtectedRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={<NonAuthLayout>{route.component}</NonAuthLayout>}
+            key={idx}
+          />
+        ))}
+      </Route>
+
+      <Route>
+      {publicRoutes.map((route, idx) => (
+        <Route
+          path={route.path}
+          element={route.component}
+          key={idx}
+          exact={true}
+        />
+      ))}
+    </Route>
+
+      <Route>
+        {authProtectedRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={
+              <AuthProtectedLayout>
+                {route.component}
+              </AuthProtectedLayout>
+            }
+            key={idx}
+          >
+          </Route>
+        ))}
+      </Route>
+    </Routes>
+    // </LoadingLayout>
   )
 }
 
