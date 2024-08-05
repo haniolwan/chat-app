@@ -3,11 +3,10 @@ import { useAppSelector } from "../redux/store";
 
 const NonAuthLayout = ({ children }) => {
     const { data } = useAppSelector((state) => state.auth);
-    console.log(data);
-    
-    // if (data?.CorporateEmployee?.id) {
-    //     return <Navigate to={"/dashboard"} />;
-    // }
+
+    if (data?.id) {
+        return <Navigate to={"/"} />;
+    }
 
     return <>{children}</>;
 };

@@ -5,7 +5,7 @@ const initialState = {
     data:
         (JSON.parse(localStorage.getItem("authUser") || "{}")) || {},
     isLoading: false,
-    success: true,
+    success: false,
     message: [],
     userInfo: {
         data: [],

@@ -1,12 +1,17 @@
-import { useCallback, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { object } from "validate-your-react";
-import { useAppDispatch } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { loginUser } from "../../redux/auth/authAction";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({});
+
+
+    const navigate = useNavigate();
+    const authResponse = useAppSelector((state) => state.auth);
+
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -38,19 +43,19 @@ const Login = () => {
 
     const dispatch = useAppDispatch();
 
-    const loginAction = useCallback(
-        (event) => {
-            event.preventDefault();
-            if (validateInput()) {
-                dispatch(
-                    loginUser({
-                        loginData
-                    })
-                );
-            }
-        },
-        [loginData]
-    );
+
+
+    const loginAction = (event) => {
+        event.preventDefault();
+        if (validateInput()) {
+            dispatch(
+                loginUser({
+                    loginData,
+                })
+            );
+
+        }
+    }
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
@@ -108,7 +113,7 @@ const Login = () => {
                                 )
                                 }
                             </div>
-                            <p className="mt-2 text-sm text-red-600">{errors?.password}</p>
+                            <p className="mt-2 text-sm text-red-600">{authResponse.message[0] || errors?.password}</p>
                         </div>
 
                         <div className="flex flex-wrap items-center justify-between gap-4 mt-6">

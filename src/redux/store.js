@@ -5,6 +5,5 @@ import authSlice from "./auth/authSlice";
 export const store = configureStore({
     reducer: { auth: authSlice },
 })
-
-export const useAppDispatch = () => store.dispatch = useDispatch;
+export const useAppDispatch = useDispatch;
 export const useAppSelector = useSelector;
