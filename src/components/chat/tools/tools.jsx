@@ -15,9 +15,14 @@ const Tools = ({ setOpenDrawer, search, setSearch }) => {
   return (
     <div
       id="user-conversation"
-      className="row-span-1 flex justify-between items-center px-6 bg-[#1C1D22]">
+      className="h-14 row-span-1 flex justify-between items-center px-6 bg-[#1C1D22]">
       <div className="flex items-center space-x-2.5">
-        <img className="w-10 h-10 rounded-full" src={user1} alt="chat user" />
+        <img
+          className="w-10 h-10 rounded-full cursor-pointer"
+          src={user1}
+          alt="chat user"
+          onClick={() => setOpenDrawer((prev) => !prev)}
+        />
         <span>Lara Mueller</span>
       </div>
       <div className="flex justify-end items-center space-x-4">

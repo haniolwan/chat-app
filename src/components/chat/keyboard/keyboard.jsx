@@ -20,21 +20,25 @@ const Keyboard = ({ setMessages }) => {
     setMessage("")
   }
   return (
-    <form onSubmit={handleSubmit} className="flex items-center px-6 space-x-2.5 bg-[#1C1D22]">
-      <div className="flex space-x-2.5">
-        <FontAwesomeIcon icon={faFaceSmile} />
-        <FontAwesomeIcon icon={faPaperclip} />
-      </div>
-      <input
-        type="text"
-        className="focus:outline-none text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 p-2.5 bg-[#26272D]"
-        placeholder="Write a message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        required
-      />
-      <FontAwesomeIcon icon={faMicrophone} />
-    </form>
+    <div id="keyboard" className="row-span-1 h-14">
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center px-6 space-x-2.5 bg-[#1C1D22] h-full w-full">
+        <div className="flex space-x-2.5">
+          <FontAwesomeIcon icon={faFaceSmile} />
+          <FontAwesomeIcon icon={faPaperclip} />
+        </div>
+        <input
+          type="text"
+          className="focus:outline-none text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 p-2.5 bg-[#26272D]"
+          placeholder="Write a message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+        />
+        <FontAwesomeIcon icon={faMicrophone} />
+      </form>
+    </div>
   )
 }
 export default Keyboard

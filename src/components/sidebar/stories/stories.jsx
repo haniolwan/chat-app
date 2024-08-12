@@ -31,7 +31,7 @@ const Stories = ({ searchInput }) => {
           {filteredStories.map((story) => (
             <img
               key={story.id}
-              className="w-12 h-12 rounded-full cursor-pointer"
+              className="w-12 h-12 rounded-full cursor-pointer hover:bg-[#8896e5] hover:shadow-lg hover:scale-[1.2] transition-all duration-200 ease-in-out"
               src={story.src}
               alt={story.alt}
             />

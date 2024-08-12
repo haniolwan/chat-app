@@ -1,12 +1,20 @@
 import Message from "../message/message"
 import SkeletonMessage from "../../skeleton/message-skeleton"
+import { useEffect, useRef } from "react"
 
 const Conversation = ({ date, messages, searchInput, isLoading }) => {
   const filteredMessages = messages.filter((message) =>
     message.text.toLowerCase().includes(searchInput.toLowerCase())
   )
+
+  const chatEndRef = useRef(null)
+
+  const scrollToBottom = () =>
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
+
+  useEffect(() => scrollToBottom, [messages])
   return (
-    <div className="text-center">
+    <div className="text-center" ref={chatEndRef}>
       {isLoading ? (
         <>
           <p className="text-sm py-4">{date}</p>
@@ -21,7 +29,7 @@ const Conversation = ({ date, messages, searchInput, isLoading }) => {
           <p className="text-sm py-4">{date}</p>
           <div className="px-6 text-center grid grid-cols-1">
             {filteredMessages.map(({ sender, text, time }, idx) => (
-              <Message key={idx} me={sender === "me"} content={text} time={time} />
+              <Message ref={chatEndRef} key={idx} me={sender === "me"} content={text} time={time} />
             ))}
           </div>
         </>

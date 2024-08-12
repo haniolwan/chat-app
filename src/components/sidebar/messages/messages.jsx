@@ -6,7 +6,6 @@ import avatar from "./../../../../src/assets/avatar.svg"
 const Messages = ({ searchInput }) => {
   const [showMessages, setShowMessages] = useState(false)
 
-  // TODO: remove these later
   const messages = [
     {
       name: "Lara Mueller",
@@ -53,7 +52,9 @@ const Messages = ({ searchInput }) => {
           {showMessages && (
             <div className="bg-[#1C1D22] text-white">
               {filteredMessages.map((msg, index) => (
-                <div key={index}>
+                <div
+                  className="hover:bg-[#33343a] hover:shadow-lg hover:scale-[1.01] transition-all duration-100 ease-in-out"
+                  key={index}>
                   <MessageItem {...msg} />
                 </div>
               ))}
